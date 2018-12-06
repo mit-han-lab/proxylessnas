@@ -1,7 +1,7 @@
 # ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware 
 
     @article{cai2018proxylassnas,
-        title={ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware },
+        title={ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware},
         author={Cai, Han and Zhu, Ligeng and Han, Song},
         journal={arXiv preprint arXiv:1812.00332},
         year={2018}
