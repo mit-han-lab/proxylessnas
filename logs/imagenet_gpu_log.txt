@@ -1,0 +1,15 @@
+Total training params: 7.12M
+no color jitter
+Total FLOPs: 465.3M
+Network configs dump to /code/Nets/imagenet-gpu/checkpoint
+Run configs dump to /code/Nets/imagenet-gpu/run.config
+Test: [0/500]	Time 4.254 (4.254)	Loss 0.5168 (0.5168)	top 1-acc 90.000 (90.000)	top 5-acc 96.000 (96.000)
+Test: [70/500]	Time 0.144 (0.189)	Loss 0.5205 (0.7987)	top 1-acc 89.000 (81.690)	top 5-acc 96.000 (95.423)
+Test: [140/500]	Time 0.123 (0.160)	Loss 1.3281 (0.8410)	top 1-acc 66.000 (80.270)	top 5-acc 93.000 (95.433)
+Test: [210/500]	Time 0.136 (0.150)	Loss 0.8964 (0.8507)	top 1-acc 78.000 (79.900)	top 5-acc 93.000 (95.398)
+Test: [280/500]	Time 0.124 (0.145)	Loss 0.5316 (0.9604)	top 1-acc 91.000 (77.537)	top 5-acc 95.000 (93.957)
+Test: [350/500]	Time 0.113 (0.141)	Loss 0.9400 (1.0181)	top 1-acc 82.000 (76.319)	top 5-acc 90.000 (93.160)
+Test: [420/500]	Time 0.136 (0.139)	Loss 1.8128 (1.0643)	top 1-acc 63.000 (75.411)	top 5-acc 83.000 (92.601)
+Test: [490/500]	Time 0.109 (0.136)	Loss 0.8744 (1.0802)	top 1-acc 84.000 (74.927)	top 5-acc 94.000 (92.485)
+Test: [499/500]	Time 0.109 (0.135)	Loss 1.8225 (1.0737)	top 1-acc 46.000 (75.084)	top 5-acc 86.000 (92.538)
+test_loss: 1.073663	 test_acc1: 75.084000	 test_acc5: 92.538000

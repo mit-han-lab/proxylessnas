@@ -1,0 +1,15 @@
+Total training params: 4.08M
+no color jitter
+Total FLOPs: 320.4M
+Network configs dump to /code/Nets/imagenet-mobile/checkpoint
+Run configs dump to /code/Nets/imagenet-mobile/run.config
+Test: [0/500]	Time 4.472 (4.472)	Loss 0.6867 (0.6867)	top 1-acc 92.000 (92.000)	top 5-acc 95.000 (95.000)
+Test: [70/500]	Time 0.145 (0.191)	Loss 0.5338 (0.8181)	top 1-acc 89.000 (82.056)	top 5-acc 97.000 (95.394)
+Test: [140/500]	Time 0.124 (0.159)	Loss 1.3985 (0.8600)	top 1-acc 67.000 (80.220)	top 5-acc 92.000 (95.404)
+Test: [210/500]	Time 0.127 (0.148)	Loss 0.8797 (0.8717)	top 1-acc 81.000 (80.019)	top 5-acc 95.000 (95.209)
+Test: [280/500]	Time 0.136 (0.143)	Loss 0.4997 (0.9834)	top 1-acc 90.000 (77.456)	top 5-acc 97.000 (93.833)
+Test: [350/500]	Time 0.153 (0.140)	Loss 0.8826 (1.0359)	top 1-acc 82.000 (76.194)	top 5-acc 95.000 (93.123)
+Test: [420/500]	Time 0.123 (0.137)	Loss 1.8816 (1.0899)	top 1-acc 60.000 (75.031)	top 5-acc 81.000 (92.342)
+Test: [490/500]	Time 0.106 (0.134)	Loss 0.8486 (1.1110)	top 1-acc 85.000 (74.432)	top 5-acc 95.000 (92.145)
+Test: [499/500]	Time 0.107 (0.134)	Loss 1.8103 (1.1042)	top 1-acc 47.000 (74.594)	top 5-acc 86.000 (92.202)
+test_loss: 1.104153	 test_acc1: 74.594000	 test_acc5: 92.202000
