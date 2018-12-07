@@ -1,11 +1,11 @@
 # ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware 
 
-    @article{cai2018proxylassnas,
-        title={ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware},
-        author={Cai, Han and Zhu, Ligeng and Han, Song},
-        journal={arXiv preprint arXiv:1812.00332},
-        year={2018}
-    }  
+@article{cai2018proxylessnas,
+  title={ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware},
+  author={Cai, Han and Zhu, Ligeng and Han, Song},
+  journal={arXiv preprint arXiv:1812.00332},
+  year={2018}
+}  
 
 Without any proxy, directly search neural network architectures on your target **task** and **hardware**! 
 
@@ -21,7 +21,7 @@ Note: our code is developed in PyTorch 0.3, and has been tested in both 0.3 and 
 | Model                | Top-1    | Top-5    | Latency | 
 |----------------------|----------|----------|---------|
 | MobilenetV1          | 70.6     | 89.5     | 113ms   | 
-| MobilenetV2          | 71.8     | 91.0     | 75ms    |
+| MobilenetV2          | 72.0     | 91.0     | 75ms    |
 | MNasNet(our impl) | 74.0 | 91.8 | 79ms
 | ProxylessNAS (mobile) | 74.6   | 92.2     | 78ms    |
 
@@ -29,7 +29,7 @@ Note: our code is developed in PyTorch 0.3, and has been tested in both 0.3 and 
 
 | Model                | Top-1    | Top-5    | Latency | 
 |----------------------|----------|----------|---------| 
-| MobilenetV2          | 71.8     | 91.0     | 6.1ms    |
+| MobilenetV2          | 72.0     | 91.0     | 6.1ms    |
 | ShufflenetV2(1.5)    | 72.6     | -        | 7.3ms    |
 | ResNet-34       | 73.3     | 91.4      | 8.0ms    |
 | MNasNet(our impl) | 74.0 | 91.8 | 6.1ms
