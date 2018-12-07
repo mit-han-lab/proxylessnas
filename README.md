@@ -1,11 +1,12 @@
 # ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware 
-
+```bash
 @article{cai2018proxylessnas,
   title={ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware},
   author={Cai, Han and Zhu, Ligeng and Han, Song},
   journal={arXiv preprint arXiv:1812.00332},
   year={2018}
-}  
+} 
+```
 
 Without any proxy, directly search neural network architectures on your target **task** and **hardware**! 
 
