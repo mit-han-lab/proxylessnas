@@ -75,8 +75,8 @@ top5 = AverageMeter()
 end = time.time()
 for i, (_input, target) in enumerate(data_loader):
 	if torch.cuda.is_available():
-		target = target.cuda(async=True)
-		_input = _input.cuda(async=True)
+		target = target.cuda(non_blocking=True)
+		_input = _input.cuda(non_blocking=True)
 	input_var = torch.autograd.Variable(_input, volatile=True)
 	target_var = torch.autograd.Variable(target, volatile=True)
 
