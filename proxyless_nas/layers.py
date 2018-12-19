@@ -465,28 +465,28 @@ class MBInvertedConvLayer(BasicUnit):
 
 		if self.expand_ratio > 1:
 			feature_dim = round(in_channels * self.expand_ratio)
-			self.inverted_bottleneck = nn.Sequential(OrderedDict({
-				'conv': nn.Conv2d(in_channels, feature_dim, 1, 1, 0, bias=False),
-				'bn': nn.BatchNorm2d(feature_dim),
-				'relu': nn.ReLU6(inplace=True),
-			}))
+			self.inverted_bottleneck = nn.Sequential(OrderedDict([
+				('conv', nn.Conv2d(in_channels, feature_dim, 1, 1, 0, bias=False)),
+				('bn', nn.BatchNorm2d(feature_dim)),
+				('relu', nn.ReLU6(inplace=True)),
+			]))
 		else:
 			feature_dim = in_channels
 			self.inverted_bottleneck = None
 
 		# depthwise convolution
 		pad = get_same_padding(self.kernel_size)
-		self.depth_conv = nn.Sequential(OrderedDict({
-			'conv': nn.Conv2d(feature_dim, feature_dim, kernel_size, stride, pad, groups=feature_dim, bias=False),
-			'bn': nn.BatchNorm2d(feature_dim),
-			'relu': nn.ReLU6(inplace=True),
-		}))
+		self.depth_conv = nn.Sequential(OrderedDict([
+			('conv', nn.Conv2d(feature_dim, feature_dim, kernel_size, stride, pad, groups=feature_dim, bias=False)),
+			('bn', nn.BatchNorm2d(feature_dim)),
+			('relu', nn.ReLU6(inplace=True)),
+		]))
 
 		# pointwise linear
-		self.point_linear = OrderedDict({
-			'conv': nn.Conv2d(feature_dim, out_channels, 1, 1, 0, bias=False),
-			'bn': nn.BatchNorm2d(out_channels),
-		})
+		self.point_linear = OrderedDict([
+			('conv', nn.Conv2d(feature_dim, out_channels, 1, 1, 0, bias=False)),
+			('bn', nn.BatchNorm2d(out_channels)),
+		])
 
 		self.point_linear = nn.Sequential(self.point_linear)
 
