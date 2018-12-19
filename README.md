@@ -12,7 +12,9 @@ Without any proxy, directly search neural network architectures on your target *
 
 ![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_nas.png)
 
-Note: our code is developed in PyTorch 0.3, and has been tested in both 0.3 and 0.4.
+## Requirements
+* PyTorch 0.3.1 or Tensorflow 1.5
+* Python 3.6+
 
 ## Performance
 <table>
@@ -63,9 +65,17 @@ Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
 # How to use / evaluate 
 * Use
     ```python
+    # pytorch 
     from proxyless_nas import proxyless_cpu, proxyless_gpu, proxyless_mobile, proxyless_mobile_14
     net = proxyless_cpu(pretrained=True) # Yes, we provide pre-trained models!
     ```
+    ```python
+    # tensorflow
+    from proxyless_nas_tensorflow import proxyless_cpu, proxyless_gpu, proxyless_mobile, proxyless_mobile_14
+    tf_net = proxyless_cpu(pretrained=True)
+    ```
 * Evaluate
 
-    `python eval.py --path 'Your path to imagent' --arch proxyless_cpu`
+    `python eval.py --path 'Your path to imagent' --arch proxyless_cpu  # pytorch`
+    
+    `python eval_tf.py --path 'Your path to imagent' --arch proxyless_cpu  # tensorflow`
