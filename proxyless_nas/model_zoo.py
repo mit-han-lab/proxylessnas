@@ -1,9 +1,8 @@
-import os
 import json
 
 import torch
 
-from proxyless_nas.utils import download_url, load_url
+from proxyless_nas.utils import download_url
 from .nas_modules import ProxylessNASNets
 
 
@@ -26,6 +25,7 @@ def proxyless_base(pretrained=True, net_config=None, net_weight=None):
 
     return net
 
+
 from functools import partial
 
 proxyless_cpu = partial(proxyless_base,
@@ -37,5 +37,9 @@ proxyless_gpu = partial(proxyless_base,
                         net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.pth")
 
 proxyless_mobile = partial(proxyless_base,
-                        net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.config",
-                        net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.pth")
+                           net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.config",
+                           net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.pth")
+
+proxyless_mobile_14 = partial(proxyless_base,
+                              net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.config",
+                              net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.pth")
