@@ -1,0 +1,40 @@
+➜  ProxylessNAS git:(master) CUDA_VISIBLE_DEVICES=0 python eval_tf.py -a proxyless_mobile
+~/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Downloading: "http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.config" to ~/.torch/proxyless_nas/proxyless_mobile.config
+Downloading: "http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.tfinit" to ~/.torch/proxyless_nas/proxyless_mobile.tfinit
+WARNING:tensorflow:From ~/Workspace/ProxylessNAS/proxyless_nas_tensorflow/tf_modules.py:35: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See @{tf.nn.softmax_cross_entropy_with_logits_v2}.
+
+2018-12-19 18:36:14.184904: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-12-19 18:36:14.391811: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties:
+name: GeForce GTX 1080 major: 6 minor: 1 memoryClockRate(GHz): 1.7335
+pciBusID: 0000:05:00.0
+totalMemory: 7.92GiB freeMemory: 7.75GiB
+2018-12-19 18:36:14.391843: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2018-12-19 18:36:14.866729: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-12-19 18:36:14.866767: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0
+2018-12-19 18:36:14.866774: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N
+2018-12-19 18:36:14.867029: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7478 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080, pci bus id: 0000:05:00.0, compute capability: 6.1)
+0 	Loss 0.8166 (0.8166) 	Top 1-acc 82.812 (82.812)
+50 	Loss 0.8185 (1.1199) 	Top 1-acc 78.125 (73.254)
+100 	Loss 0.9425 (1.1032) 	Top 1-acc 75.000 (74.072)
+150 	Loss 1.2794 (1.1041) 	Top 1-acc 71.875 (74.389)
+200 	Loss 1.0006 (1.1086) 	Top 1-acc 70.312 (74.471)
+250 	Loss 1.2845 (1.1063) 	Top 1-acc 71.875 (74.589)
+300 	Loss 0.8566 (1.0979) 	Top 1-acc 79.688 (74.647)
+350 	Loss 1.1617 (1.0962) 	Top 1-acc 71.875 (74.679)
+400 	Loss 1.3454 (1.1061) 	Top 1-acc 60.938 (74.458)
+450 	Loss 0.9413 (1.1068) 	Top 1-acc 76.562 (74.515)
+500 	Loss 0.9943 (1.1096) 	Top 1-acc 75.000 (74.476)
+550 	Loss 1.2506 (1.1088) 	Top 1-acc 70.312 (74.430)
+600 	Loss 1.3805 (1.1046) 	Top 1-acc 68.750 (74.511)
+650 	Loss 0.9530 (1.1043) 	Top 1-acc 79.688 (74.563)
+700 	Loss 1.0127 (1.1045) 	Top 1-acc 73.438 (74.570)
+750 	Loss 1.4555 (1.1047) 	Top 1-acc 71.875 (74.609)
+Loss: 1.1042 	Top-1: 74.594

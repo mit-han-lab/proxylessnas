@@ -1,0 +1,39 @@
+➜  ProxylessNAS git:(master) CUDA_VISIBLE_DEVICES=0 python eval_tf.py -a proxyless_cpu
+~/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Downloading: "http://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.tfinit" to ~/.torch/proxyless_nas/proxyless_cpu.tfinit
+WARNING:tensorflow:From ~/Workspace/ProxylessNAS/proxyless_nas_tensorflow/tf_modules.py:35: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See @{tf.nn.softmax_cross_entropy_with_logits_v2}.
+
+2018-12-19 18:40:53.677493: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-12-19 18:40:53.897496: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties:
+name: GeForce GTX 1080 major: 6 minor: 1 memoryClockRate(GHz): 1.7335
+pciBusID: 0000:05:00.0
+totalMemory: 7.92GiB freeMemory: 7.75GiB
+2018-12-19 18:40:53.897525: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0
+2018-12-19 18:40:54.288091: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-12-19 18:40:54.288120: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0
+2018-12-19 18:40:54.288126: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N
+2018-12-19 18:40:54.288327: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7478 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1080, pci bus id: 0000:05:00.0, compute capability: 6.1)
+0 	Loss 0.9460 (0.9460) 	Top 1-acc 78.125 (78.125)
+50 	Loss 1.3491 (1.0864) 	Top 1-acc 76.562 (75.306)
+100 	Loss 1.4418 (1.0700) 	Top 1-acc 71.875 (75.449)
+150 	Loss 1.1668 (1.0682) 	Top 1-acc 71.875 (75.455)
+200 	Loss 1.3968 (1.0755) 	Top 1-acc 73.438 (75.404)
+250 	Loss 1.1630 (1.0752) 	Top 1-acc 78.125 (75.417)
+300 	Loss 1.1634 (1.0712) 	Top 1-acc 73.438 (75.306)
+350 	Loss 1.3882 (1.0692) 	Top 1-acc 64.062 (75.343)
+400 	Loss 0.9668 (1.0721) 	Top 1-acc 73.438 (75.164)
+450 	Loss 0.9926 (1.0786) 	Top 1-acc 76.562 (75.184)
+500 	Loss 0.9385 (1.0721) 	Top 1-acc 81.250 (75.312)
+550 	Loss 0.8847 (1.0715) 	Top 1-acc 78.125 (75.306)
+600 	Loss 0.8821 (1.0708) 	Top 1-acc 79.688 (75.348)
+650 	Loss 1.0203 (1.0679) 	Top 1-acc 71.875 (75.410)
+700 	Loss 0.9745 (1.0697) 	Top 1-acc 75.000 (75.419)
+750 	Loss 1.3523 (1.0732) 	Top 1-acc 78.125 (75.322)
+Loss: 1.0726 	Top-1: 75.290
