@@ -1,4 +1,5 @@
 import os.path as osp
+import numpy as np
 
 import argparse
 
@@ -43,6 +44,7 @@ losses = AverageMeter()
 top1 = AverageMeter()
 for i, (_input, target) in enumerate(data_loader):
     images = _input.numpy()
+    images = np.transpose(images, axes=[0, 2, 3, 1])
     labels = net.labels_to_one_hot(1000, target.numpy())
 
     feed_dict = {

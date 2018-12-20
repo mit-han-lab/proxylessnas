@@ -62,7 +62,7 @@ class ProxylessNASNets:
         self.sess.run(self.global_variables_initializer)
 
     def _define_inputs(self):
-        shape = [None, 3, 224, 224]
+        shape = [None, 224, 224, 3]
         self.images = tf.placeholder(
             tf.float32,
             shape=shape,

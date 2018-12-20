@@ -4,7 +4,7 @@ from tensorflow.contrib.layers import avg_pool2d
 
 
 def conv2d(_input, out_features, kernel_size, stride=1, padding='SAME', param_initializer=None):
-    in_features = int(_input.get_shape()[1])
+    in_features = int(_input.get_shape()[3])
 
     if not param_initializer: param_initializer = {}
     output = _input
@@ -17,15 +17,15 @@ def conv2d(_input, out_features, kernel_size, stride=1, padding='SAME', param_in
         )
         if padding == 'SAME':
             pad = kernel_size // 2
-            paddings = tf.constant([[0, 0], [0, 0], [pad, pad], [pad, pad]])
+            paddings = tf.constant([[0, 0], [pad, pad], [pad, pad], [0, 0]])
             output = tf.pad(output, paddings, 'CONSTANT')
 
-        output = tf.nn.conv2d(output, weight, [1, 1, stride, stride], 'VALID', data_format='NCHW')
+        output = tf.nn.conv2d(output, weight, [1, stride, stride, 1], 'VALID', data_format='NHWC')
     return output
 
 
 def depthwise_conv2d(_input, kernel_size, stride=1, padding='SAME', param_initializer=None):
-    in_features = int(_input.get_shape()[1])
+    in_features = int(_input.get_shape()[3])
 
     if not param_initializer: param_initializer = {}
     output = _input
@@ -38,21 +38,21 @@ def depthwise_conv2d(_input, kernel_size, stride=1, padding='SAME', param_initia
         )
         if padding == 'SAME':
             pad = kernel_size // 2
-            paddings = tf.constant([[0, 0], [0, 0], [pad, pad], [pad, pad]])
+            paddings = tf.constant([[0, 0], [pad, pad], [pad, pad], [0, 0]])
             output = tf.pad(output, paddings, 'CONSTANT')
 
-        output = tf.nn.depthwise_conv2d(output, weight, [1, 1, stride, stride], 'VALID', data_format='NCHW')
+        output = tf.nn.depthwise_conv2d(output, weight, [1, stride, stride, 1], 'VALID', data_format='NHWC')
     return output
 
 
 def avg_pool(_input, k=2, s=2):
     padding = 'VALID'
-    output = avg_pool2d(_input, kernel_size=[k, k], stride=[s, s], padding=padding, data_format='NCHW')
+    output = avg_pool2d(_input, kernel_size=[k, k], stride=[s, s], padding=padding, data_format='NHWC')
     return output
 
 
 def fc_layer(_input, out_units, use_bias=False, param_initializer=None):
-    features_total = int(_input.get_shape()[1])
+    features_total = int(_input.get_shape()[-1])
     if not param_initializer: param_initializer = {}
     with tf.variable_scope('linear'):
         init_key = '%s/weight' % tf.get_variable_scope().name
@@ -84,7 +84,7 @@ def batch_norm(_input, is_training, epsilon=1e-3, decay=0.9, param_initializer=N
         }
         output = tf.contrib.layers.batch_norm(
             _input, scale=True, is_training=is_training, param_initializers=bn_init,
-            updates_collections=None, epsilon=epsilon, decay=decay, data_format='NCHW',
+            updates_collections=None, epsilon=epsilon, decay=decay, data_format='NHWC',
         )
     return output
 
@@ -126,7 +126,7 @@ class MBInvertedConvLayer:
 
     def build(self, _input, net, init=None):
         output = _input
-        in_features = int(_input.get_shape()[1])
+        in_features = int(_input.get_shape()[3])
         with tf.variable_scope(self.id):
             if self.expand_ratio > 1:
                 feature_dim = round(in_features * self.expand_ratio)
