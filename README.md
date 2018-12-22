@@ -18,6 +18,10 @@ Without any proxy, directly search neural network architectures on your target *
 * PyTorch 0.3.1 or Tensorflow 1.5
 * Python 3.6+
 
+## Updates
+* Dec-21-2018: TensorFlow pretrained models are released.
+* Dec-01-2018: PyTorch pretrained models are released. 
+
 ## Performance
 <table>
 <tr><th> Mobile settings </th><th> GPU settings </th></tr>
