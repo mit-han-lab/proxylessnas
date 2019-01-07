@@ -6,7 +6,7 @@
   author={Han Cai and Ligeng Zhu and Song Han},
   booktitle={International Conference on Learning Representations},
   year={2019},
-  url={https://openreview.net/forum?id=HylVB3AqYm},
+  url={https://arxiv.org/pdf/1812.00332.pdf},
 }
 ```
 
