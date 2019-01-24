@@ -1,0 +1,1 @@
+python eval.py --gpu "6" --arch proxyless_gpu

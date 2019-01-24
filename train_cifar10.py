@@ -32,7 +32,7 @@ def get_arguments():
                         help='The path of cifar10')
     parser.add_argument("-g", '--gpu', type=str, default='all',
                         help='The gpu(s) to use')
-    parser.add_argument("-b", "--batch-size", type=int, default=128,
+    parser.add_argument("-b", "--batch-size", type=int, default=512,
                         help="The batch on every device for training and validating")
     parser.add_argument('--cutout', action='store_true', default=False, 
                         help='use cutout')
@@ -40,7 +40,6 @@ def get_arguments():
                         help="The batch on every device for validation")
     parser.add_argument('-a', '--arch', metavar='ARCH', default='proxyless_mobile_14', choices=model_names,
                         help='model architecture: ' + ' | '.join(model_names) + ' (default: proxyless_mobile_14)')
-    
     parser.add_argument('--epochs', type=int, default=500, 
                         help='num of training epochs')
     parser.add_argument('--learning_rate', type=float, default=0.025, 

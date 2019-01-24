@@ -110,5 +110,4 @@ venv.bak/
 models/
 datasets/
 
-*.out
-*.sh 
+*.out 
