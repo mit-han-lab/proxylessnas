@@ -1,4 +1,7 @@
 import os, sys
+import numpy as np
+import shutil
+import logging
 
 try:
     from urllib import urlretrieve
@@ -8,9 +11,10 @@ except ImportError:
 import torch
 import torch.nn as nn
 import torch.optim
+import torchvision.transforms as transforms
+from torch.autograd import Variable
 
-
-def download_url(url, model_dir="~/.torch/proxyless_nas", overwrite=False):
+def download_url(url, model_dir="models/proxyless_nas", overwrite=False):
     model_dir = os.path.expanduser(model_dir)
     filename = url.split('/')[-1]
     cached_file = os.path.join(model_dir, filename)
@@ -21,10 +25,52 @@ def download_url(url, model_dir="~/.torch/proxyless_nas", overwrite=False):
     return cached_file
 
 
-def load_url(url, model_dir='~/.torch/proxyless_nas', map_location=None):
+def load_url(url, model_dir='models/proxyless_nas', map_location=None):
     cached_file = download_url(url, model_dir)
     map_location = "cpu" if not torch.cuda.is_available() and map_location is None else None
     return torch.load(cached_file, map_location=map_location)
+
+
+class Cutout(object):
+    def __init__(self, length):
+        self.length = length
+
+    def __call__(self, img):
+        h, w = img.size(1), img.size(2)
+        mask = np.ones((h, w), np.float32)
+        y = np.random.randint(h)
+        x = np.random.randint(w)
+
+        y1 = np.clip(y - self.length // 2, 0, h)
+        y2 = np.clip(y + self.length // 2, 0, h)
+        x1 = np.clip(x - self.length // 2, 0, w)
+        x2 = np.clip(x + self.length // 2, 0, w)
+
+        mask[y1: y2, x1: x2] = 0.
+        mask = torch.from_numpy(mask)
+        mask = mask.expand_as(img)
+        img *= mask
+        return img
+
+
+def _data_transforms_cifar10(args):
+    CIFAR_MEAN = [0.49139968, 0.48215827, 0.44653124]
+    CIFAR_STD = [0.24703233, 0.24348505, 0.26158768]
+
+    train_transform = transforms.Compose([
+        transforms.RandomCrop(32, padding=4),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize(CIFAR_MEAN, CIFAR_STD),
+    ])
+    if args.cutout:
+        train_transform.transforms.append(Cutout(args.cutout_length))
+
+    valid_transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(CIFAR_MEAN, CIFAR_STD),
+        ])
+    return train_transform, valid_transform
 
 
 def cross_entropy_with_label_smoothing(pred, target, label_smoothing=0.1):
@@ -103,6 +149,43 @@ def accuracy(output, target, topk=(1,)):
         correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
         res.append(correct_k.mul_(100.0 / batch_size))
     return res
+
+
+def save(model, model_path):
+  torch.save(model.state_dict(), model_path)
+
+
+def count_parameters_in_MB(model):
+  return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)/1e6
+
+
+def save_checkpoint(state, is_best, save):
+  filename = os.path.join(save, 'checkpoint.pth.tar')
+  torch.save(state, filename)
+  if is_best:
+    best_filename = os.path.join(save, 'model_best.pth.tar')
+    shutil.copyfile(filename, best_filename)
+
+
+def setup_logger(name, save_dir, distributed_rank):
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.DEBUG)
+    # don't log results for the non-master process
+    if distributed_rank > 0:
+        return logger
+    ch = logging.StreamHandler(stream=sys.stdout)
+    ch.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s: %(message)s")
+    ch.setFormatter(formatter)
+    logger.addHandler(ch)
+
+    if save_dir:
+        fh = logging.FileHandler(os.path.join(save_dir, "log.txt"))
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
+    return logger
 
 
 class AverageMeter(object):
