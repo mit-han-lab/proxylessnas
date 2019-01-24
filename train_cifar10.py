@@ -48,7 +48,6 @@ def get_arguments():
                         help='momentum')
     parser.add_argument('--weight_decay', type=float, default=3e-4, 
                         help='weight decay')
-    
     parser.add_argument('--save', type=str, default='EXP', 
                         help='experiment name')
     parser.add_argument('--report_freq', type=float, default=50, 
@@ -57,8 +56,8 @@ def get_arguments():
                         help='num of init channels')
     parser.add_argument('--layers', type=int, default=20, 
                         help='total number of layers')
-    # parser.add_argument('--model_path', type=str, default='saved_models', 
-    #                     help='path to save the model')
+    parser.add_argument('--model_path', type=str, default='pretrained/weights.pt', 
+                        help='path of pretrained model')
     parser.add_argument('--drop_path_prob', type=float, default=0.2, 
                         help='drop path probability')
     parser.add_argument('--grad_clip', type=float, default=5, 
@@ -165,9 +164,15 @@ def main():
     # linear scale the devices
     args.batch_size = args.batch_size * max(len(device_list), 1)
     args.workers = args.workers * max(len(device_list), 1)
+
+    args.save = 'output/eval-{}-{}'.format(args.save, time.strftime("%Y%m%d-%H%M%S"))
+    if not os.path.exists(args.save):
+        os.mkdir(args.save)
     
     net = proxyless_gpu(pretrained=True)
     net = torch.nn.DataParallel(net).cuda()
+    if os.path.exists(args.model_path):
+        utils.load(net, args.model_path)
     cudnn.benchmark = True
     
     logger.info("param size = %fMB", utils.count_parameters_in_MB(net))
@@ -190,10 +195,6 @@ def main():
             valid_data, batch_size=args.batch_size, shuffle=False, pin_memory=True, num_workers=2)
 
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, float(args.epochs))
-
-    args.save = 'output/eval-{}-{}'.format(args.save, time.strftime("%Y%m%d-%H%M%S"))
-    if not os.path.exists(args.save):
-        os.mkdir(args.save)
     
     for epoch in range(args.epochs):
         scheduler.step()

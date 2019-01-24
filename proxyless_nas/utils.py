@@ -155,6 +155,10 @@ def save(model, model_path):
   torch.save(model.state_dict(), model_path)
 
 
+def load(model, model_path):
+  model.load_state_dict(torch.load(model_path))
+
+
 def count_parameters_in_MB(model):
   return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)/1e6
 
