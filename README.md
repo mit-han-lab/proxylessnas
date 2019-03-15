@@ -1,12 +1,3 @@
-- March 15, 2019: for our most updated work on model compression and acceleration, please reference: 
-
-	[ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware](https://arxiv.org/pdf/1812.00332.pdf) (ICLR’19)
-
-	[AMC: AutoML for Model Compression and Acceleration on Mobile Devices](https://arxiv.org/pdf/1802.03494.pdf) (ECCV’18)
-
-	[HAQ: Hardware-Aware Automated Quantization](https://arxiv.org/pdf/1811.08886.pdf)  (CVPR’19, oral)
-	
-	[Defenstive Quantization: When Efficiency Meets Robustness](https://openreview.net/pdf?id=ryetZ20ctX) (ICLR'19)
   
 # ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware
 ```bash
@@ -96,3 +87,14 @@ Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
     `python eval.py --path 'Your path to imagent' --arch proxyless_cpu  # pytorch`
     
     `python eval_tf.py --path 'Your path to imagent' --arch proxyless_cpu  # tensorflow`
+
+## Related work on automated model compression and acceleration:
+
+	[ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware](https://arxiv.org/pdf/1812.00332.pdf) (ICLR’19)
+
+	[AMC: AutoML for Model Compression and Acceleration on Mobile Devices](https://arxiv.org/pdf/1802.03494.pdf) (ECCV’18)
+
+	[HAQ: Hardware-Aware Automated Quantization](https://arxiv.org/pdf/1811.08886.pdf)  (CVPR’19, oral)
+	
+	[Defenstive Quantization: When Efficiency Meets Robustness](https://openreview.net/pdf?id=ryetZ20ctX) (ICLR'19)
+
