@@ -1,0 +1,4 @@
+torch==0.4.1
+torchvision==0.2.2.post3
+numpy==1.16.2
+tensorflow==1.8.0
