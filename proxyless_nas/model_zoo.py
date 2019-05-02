@@ -29,17 +29,17 @@ def proxyless_base(pretrained=True, net_config=None, net_weight=None):
 from functools import partial
 
 proxyless_cpu = partial(proxyless_base,
-                        net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.config",
-                        net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.pth")
+                        net_config="https://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.config",
+                        net_weight="https://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.pth")
 
 proxyless_gpu = partial(proxyless_base,
-                        net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.config",
-                        net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.pth")
+                        net_config="https://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.config",
+                        net_weight="https://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.pth")
 
 proxyless_mobile = partial(proxyless_base,
-                           net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.config",
-                           net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.pth")
+                           net_config="https://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.config",
+                           net_weight="https://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.pth")
 
 proxyless_mobile_14 = partial(proxyless_base,
-                              net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.config",
-                              net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.pth")
+                              net_config="https://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.config",
+                              net_weight="https://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.pth")
