@@ -82,6 +82,9 @@ Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
     from proxyless_nas_tensorflow import proxyless_cpu, proxyless_gpu, proxyless_mobile, proxyless_mobile_14
     tf_net = proxyless_cpu(pretrained=True)
     ```
+
+    If the above scripts failed to download, you download it manually from [Google Drive](https://drive.google.com/drive/folders/1qIaDsT95dKgrgaJk-KOMu6v9NLROv2tz?usp=sharing) and put them under  `$HOME/.torch/proxyless_nas/`.
+
 * Evaluate
 
     `python eval.py --path 'Your path to imagent' --arch proxyless_cpu  # pytorch`
