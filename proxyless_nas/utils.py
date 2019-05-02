@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 
 try:
     from urllib import urlretrieve
@@ -35,7 +36,8 @@ def cross_entropy_with_label_smoothing(pred, target, label_smoothing=0.1):
     soft_target = torch.zeros_like(pred)
     soft_target.scatter_(1, target, 1)
     # label smoothing
-    soft_target = soft_target * (1 - label_smoothing) + label_smoothing / n_classes
+    soft_target = soft_target * \
+        (1 - label_smoothing) + label_smoothing / n_classes
     return torch.mean(torch.sum(- soft_target * logsoftmax(pred), 1))
 
 
@@ -45,7 +47,8 @@ def get_same_padding(kernel_size):
         p1 = get_same_padding(kernel_size[0])
         p2 = get_same_padding(kernel_size[1])
         return p1, p2
-    assert isinstance(kernel_size, int), 'kernel size should be either `int` or `tuple`'
+    assert isinstance(
+        kernel_size, int), 'kernel size should be either `int` or `tuple`'
     assert kernel_size % 2 > 0, 'kernel size should be odd number'
     return kernel_size // 2
 
@@ -77,15 +80,16 @@ def list_sum(x):
 
 
 def count_parameters(model):
-    total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    total_params = sum(p.numel()
+                       for p in model.parameters() if p.requires_grad)
     return total_params
 
 
 def count_conv_flop(layer, x):
     out_h = int(x.size()[2] / layer.stride[0])
     out_w = int(x.size()[3] / layer.stride[1])
-    delta_ops = layer.in_channels * layer.out_channels * layer.kernel_size[0] * layer.kernel_size[
-        1] * out_h * out_w / layer.groups
+    delta_ops = layer.in_channels * layer.out_channels * \
+        layer.kernel_size[0] * layer.kernel_size[1] * out_h * out_w / layer.groups
     return delta_ops
 
 

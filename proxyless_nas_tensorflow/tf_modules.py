@@ -32,15 +32,16 @@ class ProxylessNASNets:
             prediction = logits
             # losses
             cross_entropy = tf.reduce_mean(
-                tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=self.labels)
-            )
+                tf.nn.softmax_cross_entropy_with_logits(
+                    logits=logits, labels=self.labels))
             self.cross_entropy = cross_entropy
 
             correct_prediction = tf.equal(
                 tf.argmax(prediction, 1),
                 tf.argmax(self.labels, 1)
             )
-            self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+            self.accuracy = tf.reduce_mean(
+                tf.cast(correct_prediction, tf.float32))
 
             self.global_variables_initializer = tf.global_variables_initializer()
         self._initialize_session()
@@ -75,7 +76,8 @@ class ProxylessNASNets:
             tf.float32,
             shape=[],
             name='learning_rate')
-        self.is_training = tf.placeholder(tf.bool, shape=[], name='is_training')
+        self.is_training = tf.placeholder(
+            tf.bool, shape=[], name='is_training')
 
     @staticmethod
     def labels_to_one_hot(n_classes, labels):
@@ -90,30 +92,45 @@ class ProxylessNASNets:
                 init[key] = tf.constant_initializer(init[key])
 
         # first conv
-        first_conv = ConvLayer('first_conv', self.net_config['first_conv']['out_channels'], 3, 2)
+        first_conv = ConvLayer(
+            'first_conv',
+            self.net_config['first_conv']['out_channels'],
+            3,
+            2)
         output = first_conv.build(output, self, init)
 
         for i, block_config in enumerate(self.net_config['blocks']):
             if block_config['mobile_inverted_conv']['name'] == 'ZeroLayer':
                 continue
             mobile_inverted_conv = MBInvertedConvLayer(
-                'mobile_inverted_conv', block_config['mobile_inverted_conv']['out_channels'],
-                block_config['mobile_inverted_conv']['kernel_size'], block_config['mobile_inverted_conv']['stride'],
+                'mobile_inverted_conv',
+                block_config['mobile_inverted_conv']['out_channels'],
+                block_config['mobile_inverted_conv']['kernel_size'],
+                block_config['mobile_inverted_conv']['stride'],
                 block_config['mobile_inverted_conv']['expand_ratio'],
             )
             if block_config['shortcut'] is None or block_config['shortcut']['name'] == 'ZeroLayer':
                 has_residual = False
             else:
                 has_residual = True
-            block = MobileInvertedResidualBlock('blocks/%d' % i, mobile_inverted_conv, has_residual)
+            block = MobileInvertedResidualBlock(
+                'blocks/%d' %
+                i, mobile_inverted_conv, has_residual)
             output = block.build(output, self, init)
 
         # feature mix layer
-        feature_mix_layer = ConvLayer('feature_mix_layer', self.net_config['feature_mix_layer']['out_channels'], 1, 1)
+        feature_mix_layer = ConvLayer(
+            'feature_mix_layer',
+            self.net_config['feature_mix_layer']['out_channels'],
+            1,
+            1)
         output = feature_mix_layer.build(output, self, init)
 
         output = avg_pool(output, 7, 7)
         output = flatten(output)
-        classifier = LinearLayer('classifier', self.n_classes, self.net_config['classifier']['dropout_rate'])
+        classifier = LinearLayer(
+            'classifier',
+            self.n_classes,
+            self.net_config['classifier']['dropout_rate'])
         output = classifier.build(output, self, init)
         return output

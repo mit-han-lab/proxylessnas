@@ -1,3 +1,4 @@
+from functools import partial
 import json
 import pickle
 
@@ -21,20 +22,22 @@ def proxyless_base(pretrained=True, net_config=None, net_weight=None):
     return net
 
 
-from functools import partial
+proxyless_cpu = partial(
+    proxyless_base,
+    net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.config",
+    net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.tfinit")
 
-proxyless_cpu = partial(proxyless_base,
-                        net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.config",
-                        net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_cpu.tfinit")
+proxyless_gpu = partial(
+    proxyless_base,
+    net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.config",
+    net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.tfinit")
 
-proxyless_gpu = partial(proxyless_base,
-                        net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.config",
-                        net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_gpu.tfinit")
+proxyless_mobile = partial(
+    proxyless_base,
+    net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.config",
+    net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.tfinit")
 
-proxyless_mobile = partial(proxyless_base,
-                           net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.config",
-                           net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile.tfinit")
-
-proxyless_mobile_14 = partial(proxyless_base,
-                              net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.config",
-                              net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.tfinit")
+proxyless_mobile_14 = partial(
+    proxyless_base,
+    net_config="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.config",
+    net_weight="http://hanlab.mit.edu/files/proxylessNAS/proxyless_mobile_14.tfinit")

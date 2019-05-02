@@ -15,29 +15,63 @@ model_names = sorted(name for name in tf_model_zoo.__dict__
                      and callable(tf_model_zoo.__dict__[name]))
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", '--path', help='The path of imagenet', type=str, default="/ssd/dataset/imagenet")
-parser.add_argument("-b", "--batch-size", help="The batch on every device for validation", type=int, default=64)
-parser.add_argument("-j", "--workers", help="The batch on every device for validation", type=int, default=4)
-parser.add_argument('-a', '--arch', metavar='ARCH', default='proxyless_mobile_14',
-                    choices=model_names,
-                    help='model architecture: ' +
-                         ' | '.join(model_names) +
-                         ' (default: proxyless_mobile_14)')
+parser.add_argument(
+    "-p",
+    '--path',
+    help='The path of imagenet',
+    type=str,
+    default="/ssd/dataset/imagenet")
+parser.add_argument(
+    "-b",
+    "--batch-size",
+    help="The batch on every device for validation",
+    type=int,
+    default=64)
+parser.add_argument(
+    "-j",
+    "--workers",
+    help="The batch on every device for validation",
+    type=int,
+    default=4)
+parser.add_argument(
+    '-a',
+    '--arch',
+    metavar='ARCH',
+    default='proxyless_mobile_14',
+    choices=model_names,
+    help='model architecture: ' +
+    ' | '.join(model_names) +
+    ' (default: proxyless_mobile_14)')
 parser.add_argument('--manual_seed', default=0, type=int)
 args = parser.parse_args()
 
 net = tf_model_zoo.__dict__[args.arch](pretrained=True)
 
 data_loader = torch.utils.data.DataLoader(
-    datasets.ImageFolder(osp.join(args.path, "val"), transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(
-            mean=[0.485, 0.456, 0.406],
-            std=[0.229, 0.224, 0.225]
-        ),
-    ])), batch_size=args.batch_size, shuffle=True, num_workers=args.workers, pin_memory=True, drop_last=False,
+    datasets.ImageFolder(
+        osp.join(
+            args.path,
+            "val"),
+        transforms.Compose(
+            [
+                transforms.Resize(256),
+                transforms.CenterCrop(224),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    mean=[
+                        0.485,
+                        0.456,
+                        0.406],
+                    std=[
+                        0.229,
+                        0.224,
+                        0.225]),
+            ])),
+    batch_size=args.batch_size,
+    shuffle=True,
+    num_workers=args.workers,
+    pin_memory=True,
+    drop_last=False,
 )
 
 losses = AverageMeter()
