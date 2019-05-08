@@ -17,7 +17,7 @@ Without any proxy, directly and efficiently search neural network architectures 
 ![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_nas.png)
 
 <p align="center">
-    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_bar.png" width="80%" />
+    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_bar_2.png" width="80%" />
 </p>
 
 ## Requirements
