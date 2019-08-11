@@ -1,6 +1,6 @@
 import math
 
-from proxyless_nas.layers import *
+from .layers import *
 
 
 class MobileInvertedResidualBlock(BasicUnit):

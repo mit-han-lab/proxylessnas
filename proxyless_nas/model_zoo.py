@@ -3,7 +3,7 @@ import json
 
 import torch
 
-from proxyless_nas.utils import download_url
+from .utils import download_url
 from .nas_modules import ProxylessNASNets
 
 

@@ -20,11 +20,8 @@ Without any proxy, directly and efficiently search neural network architectures 
     <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_bar.png" width="80%" />
 </p>
 
-## Requirements
-* PyTorch 0.3.1 or Tensorflow 1.5
-* Python 3.6+
-
 ## Updates
+* Aug-10-2019: Training code is released. 
 * Dec-21-2018: TensorFlow pretrained models are released.
 * Dec-01-2018: PyTorch pretrained models are released. 
 
