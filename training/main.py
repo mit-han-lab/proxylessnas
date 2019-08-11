@@ -46,7 +46,6 @@ parser.add_argument('--format', default='./checkpoint-{epoch}.pth.tar',
                     help='checkpoint file format')
 parser.add_argument('--fp16-allreduce', action='store_true', default=False,
                     help='use fp16 compression during allreduce')
-parser.add_argument('--gradient-compression', default=None, choices=[None, "fp16", "dgc"])
 
 # Default settings from https://arxiv.org/abs/1706.02677.
 parser.add_argument('--batch-size', type=int, default=64,
