@@ -1,0 +1,16 @@
+# Python crap!
+*.pyc
+__pycache__
+models/__pycache__
+notebooks/.ipynb_checkpoints/
+
+# Bazel crap!
+bazel-*
+nohup.out
+.vscode
+
+# Checkpoints cache
+checkpoints/cache
+
+# pycharm
+*.idea*
