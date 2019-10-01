@@ -21,7 +21,8 @@ Without any proxy, directly and efficiently search neural network architectures 
 </p>
 
 ## Updates
-* Aug-10-2019: Training code is released. 
+* Sep-30-2019: Searhcing code is released (under [search](./search) folder).
+* Aug-10-2019: Training code is released (under [training](./training) folder).
 * Dec-21-2018: TensorFlow pretrained models are released.
 * Dec-01-2018: PyTorch pretrained models are released. 
 
