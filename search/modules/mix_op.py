@@ -132,6 +132,7 @@ class MixedEdge(MyModule):
                         for k in range(len(candidate_ops)):
                             if k != active_id:
                                 out_k = candidate_ops[k](_x.data)
+                                # why adding grad to the non-active pash?
                             else:
                                 out_k = _output.data
                             grad_k = torch.sum(out_k * grad_output)
