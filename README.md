@@ -13,18 +13,19 @@
 
 Without any proxy, directly and efficiently search neural network architectures on your target **task** and **hardware**! 
 
+Now, proxylessnas is on [PyTorch Hub](https://pytorch.org/hub/pytorch_vision_proxylessnas/). You can load it with only two lines!
+
+```python
+target_platform = "proxyless_cpu" # proxyless_gpu, proxyless_mobile, proxyless_mobile14 are also avaliable.
+model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=True)
+```
+
 
 ![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_nas.png)
 
 <p align="center">
     <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_bar.png" width="80%" />
 </p>
-
-## Updates
-* Sep-30-2019: Searhcing code is released (under [search](./search) folder).
-* Aug-10-2019: Training code is released (under [training](./training) folder).
-* Dec-21-2018: TensorFlow pretrained models are released.
-* Dec-01-2018: PyTorch pretrained models are released. 
 
 ## Performance
 
@@ -94,6 +95,14 @@ Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
     `python eval.py --path 'Your path to imagent' --arch proxyless_cpu  # pytorch`
     
     `python eval_tf.py --path 'Your path to imagent' --arch proxyless_cpu  # tensorflow`
+
+
+## File structure
+
+* [search](./search): code for neural architecture search.
+* [training](./training): code for training searched models.
+* [proxyless_nas_tensorflow](./proxyless_nas_tensorflow): pretrained models for tensorflow.
+* [proxyless_nas](./proxyless_nas): pretrained models for PyTorch.
 
 ## Related work on automated model compression and acceleration:
 
