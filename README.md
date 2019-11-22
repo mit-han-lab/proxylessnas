@@ -73,7 +73,7 @@ People used to deploy one model to all platforms, but this is not good. To fully
 ![](https://hanlab.mit.edu/files/proxylessNAS/figures/specialization.jpg)
 ![](https://hanlab.mit.edu/files/proxylessNAS/figures/specialized_archs.png)
 
-Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
+We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualization.mp4) of search process.. Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
  
 # How to use / evaluate 
 * Use
