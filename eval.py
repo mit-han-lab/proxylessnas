@@ -3,6 +3,7 @@ import os.path as osp
 
 import argparse
 import time
+from tqdm import tqdm
 
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
@@ -23,7 +24,7 @@ parser.add_argument(
     '--path',
     help='The path of imagenet',
     type=str,
-    default="/ssd/dataset/imagenet")
+    default="/dataset/imagenet")
 parser.add_argument(
     "-g",
     '--gpu',
@@ -39,7 +40,7 @@ parser.add_argument(
 parser.add_argument(
     "-j",
     "--workers",
-    help="The batch on every device for validation",
+    help="Number of workers of data loader",
     type=int,
     default=4)
 parser.add_argument(
@@ -51,6 +52,13 @@ parser.add_argument(
     help='model architecture: ' +
     ' | '.join(model_names) +
     ' (default: proxyless_mobile_14)')
+parser.add_argument(
+    '-d',
+    '--dataset',
+    default='imagenet',
+    choices=['cifar10', 'imagenet'],
+    help='Dataset'
+)
 parser.add_argument('--manual_seed', default=0, type=int)
 args = parser.parse_args()
 
@@ -61,82 +69,92 @@ else:
     device_list = [int(_) for _ in args.gpu.split(",")]
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
-net = model_zoo.__dict__[args.arch](pretrained=True)
+if args.dataset == 'imagenet':
+    net = model_zoo.__dict__[args.arch](pretrained=True)
+else:
+    net = model_zoo.__dict__['proxyless_cifar'](pretrained=True)
 
 # linear scale the devices
 args.batch_size = args.batch_size * max(len(device_list), 1)
 args.workers = args.workers * max(len(device_list), 1)
 
-data_loader = torch.utils.data.DataLoader(
-    datasets.ImageFolder(
-        osp.join(
-            args.path,
-            "val"),
-        transforms.Compose(
-            [
-                transforms.Resize(256),
-                transforms.CenterCrop(224),
-                transforms.ToTensor(),
-                transforms.Normalize(
-                    mean=[
-                        0.485,
-                        0.456,
-                        0.406],
-                    std=[
-                        0.229,
-                        0.224,
-                        0.225]),
-            ])),
-    batch_size=args.batch_size,
-    shuffle=True,
-    num_workers=args.workers,
-    pin_memory=True,
-    drop_last=False,
-)
+if args.dataset == 'imagenet':
+    data_loader = torch.utils.data.DataLoader(
+        datasets.ImageFolder(
+            osp.join(
+                args.path,
+                "val"),
+            transforms.Compose(
+                [
+                    transforms.Resize(256),
+                    transforms.CenterCrop(224),
+                    transforms.ToTensor(),
+                    transforms.Normalize(
+                        mean=[
+                            0.485,
+                            0.456,
+                            0.406],
+                        std=[
+                            0.229,
+                            0.224,
+                            0.225]),
+                ])),
+        batch_size=args.batch_size,
+        shuffle=True,
+        num_workers=args.workers,
+        pin_memory=True,
+        drop_last=False,
+    )
+else:
+    test_transforms = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(
+            mean=[x / 255.0 for x in [125.3, 123.0, 113.9]],
+            std=[x / 255.0 for x in [63.0, 62.1, 66.7]]
+        ),
+    ])
+    data_loader = torch.utils.data.DataLoader(
+        datasets.CIFAR10('.dataset/cifar10', train=False, transform=test_transforms, download=True),
+        batch_size=args.batch_size,
+        shuffle=True,
+        num_workers=args.workers,
+        pin_memory=True,
+        drop_last=False
+    )
 
-net = torch.nn.DataParallel(net).cuda()
+device = torch.device('cuda:0')
+
+net = torch.nn.DataParallel(net).to(device)
 cudnn.benchmark = True
-criterion = nn.CrossEntropyLoss().cuda()
+criterion = nn.CrossEntropyLoss().to(device)
 
 net.eval()
 
-batch_time = AverageMeter()
 losses = AverageMeter()
 top1 = AverageMeter()
 top5 = AverageMeter()
 
-end = time.time()
-for i, (_input, target) in enumerate(data_loader):
-    if torch.cuda.is_available():
-        target = target.cuda(async=True)
-        _input = _input.cuda(async=True)
-    input_var = torch.autograd.Variable(_input, volatile=True)
-    target_var = torch.autograd.Variable(target, volatile=True)
+with torch.no_grad():
+    with tqdm(total=len(data_loader), desc='Test') as t:
+        for i, (_input, target) in enumerate(data_loader):
+            target = target.to(device)
+            _input = _input.to(device)
 
-    # compute output
-    output = net(input_var)
-    loss = criterion(output, target_var)
+            # compute output
+            output = net(_input)
+            loss = criterion(output, target)
 
-    # measure accuracy and record loss
-    acc1, acc5 = accuracy(output.data, target, topk=(1, 5))
-    losses.update(loss.data[0], _input.size(0))
-    top1.update(acc1[0], _input.size(0))
-    top5.update(acc5[0], _input.size(0))
+            # measure accuracy and record loss
+            acc1, acc5 = accuracy(output.data, target, topk=(1, 5))
+            losses.update(loss.item(), _input.size(0))
+            top1.update(acc1[0].item(), _input.size(0))
+            top5.update(acc5[0].item(), _input.size(0))
 
-    # measure elapsed time
-    batch_time.update(time.time() - end)
-    end = time.time()
+            t.set_postfix({
+                'Loss': losses.avg,
+                'Top1': top1.avg,
+                'Top5': top5.avg
+            })
+            t.update(1)
 
-    if i % 10 == 0 or i + 1 == len(data_loader):
-        print('Test: [{0}/{1}]\t'
-              'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-              'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-              'top 1-acc {top1.val:.3f} ({top1.avg:.3f})\t'
-              'top 5-acc {top5.val:.3f} ({top5.avg:.3f})'. format(i,
-                                                                  len(data_loader),
-                                                                  batch_time=batch_time,
-                                                                  loss=losses,
-                                                                  top1=top1,
-                                                                  top5=top5))
-
-print(losses.avg, top1.avg, top5.avg)
+print('Loss:', losses.avg, '\t Top1:', top1.avg, '\t Top5:', top5.avg)

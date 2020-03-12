@@ -79,7 +79,7 @@ We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualiza
 * Use
     ```python
     # pytorch 
-    from proxyless_nas import proxyless_cpu, proxyless_gpu, proxyless_mobile, proxyless_mobile_14
+    from proxyless_nas import proxyless_cpu, proxyless_gpu, proxyless_mobile, proxyless_mobile_14, proxyless_cifar
     net = proxyless_cpu(pretrained=True) # Yes, we provide pre-trained models!
     ```
     ```python
@@ -92,7 +92,9 @@ We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualiza
 
 * Evaluate
 
-    `python eval.py --path 'Your path to imagent' --arch proxyless_cpu  # pytorch`
+    `python eval.py --path 'Your path to imagent' --arch proxyless_cpu  # pytorch ImageNet`
+    
+    `python eval.py -d cifar10 # pytorch cifar10 `
     
     `python eval_tf.py --path 'Your path to imagent' --arch proxyless_cpu  # tensorflow`
 
@@ -105,6 +107,8 @@ We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualiza
 * [proxyless_nas](./proxyless_nas): pretrained models for PyTorch.
 
 ## Related work on automated model compression and acceleration:
+
+[Once for All: Train One Network and Specialize it for Efficient Deployment](https://arxiv.org/abs/1908.09791) (ICLR'20, [code](https://github.com/mit-han-lab/once-for-all))
 
 [ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware](https://arxiv.org/pdf/1812.00332.pdf) (ICLR’19)
 
