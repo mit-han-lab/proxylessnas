@@ -104,7 +104,7 @@ if __name__ == '__main__':
         # build net from args
         if 'proxyless' in args.net:
             from models.normal_nets.proxyless_nets import proxyless_base
-            net_config_url = 'https://hanlab.mit.edu/files/proxylessNAS/%s.config' % args.net
+            net_config_url = 'https://file.lzhu.me/projects/proxylessNAS/%s.config' % args.net
             net = proxyless_base(
                 net_config=net_config_url, n_classes=run_config.data_provider.n_classes,
                 bn_param=(args.bn_momentum, args.bn_eps), dropout_rate=args.dropout,
@@ -133,7 +133,7 @@ if __name__ == '__main__':
         run_manager.net.module.load_state_dict(checkpoint)
     elif 'proxyless' in args.net and not args.train:
         from utils.latency_estimator import download_url
-        pretrained_weight_url = 'https://hanlab.mit.edu/files/proxylessNAS/%s.pth' % args.net
+        pretrained_weight_url = 'https://file.lzhu.me/projects/proxylessNAS/%s.pth' % args.net
         print('Load pretrained weights from %s' % pretrained_weight_url)
         init_path = download_url(pretrained_weight_url)
         init = torch.load(init_path, map_location='cpu')
