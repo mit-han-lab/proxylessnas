@@ -11,7 +11,7 @@
 ```
 
 ## News
-- Next generation of ProxylessNAS: Once-for-All [Code]((https://github.com/mit-han-lab/once-for-all)). 
+- Next generation of ProxylessNAS: [Once-for-All](https://github.com/mit-han-lab/once-for-all) (First place in the 3rd and 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019)). 
 - First place in the Visual Wake Words Challenge, TF-lite track, @CVPR 2019
 - Third place in the Low Power Image Recognition Challenge (LPIRC), classification track, @CVPR 2019
 

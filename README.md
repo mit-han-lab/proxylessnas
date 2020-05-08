@@ -11,6 +11,12 @@
 }
 ```
 
+## News
+- Next generation of ProxylessNAS: [Once-for-All](https://github.com/mit-han-lab/once-for-all) (First place in the 3rd and 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019)). 
+- First place in the Visual Wake Words Challenge, TF-lite track, @CVPR 2019
+- Third place in the Low Power Image Recognition Challenge (LPIRC), classification track, @CVPR 2019
+
+## Performance
 Without any proxy, directly and efficiently search neural network architectures on your target **task** and **hardware**! 
 
 Now, proxylessnas is on [PyTorch Hub](https://pytorch.org/hub/pytorch_vision_proxylessnas/). You can load it with only two lines!
@@ -26,8 +32,6 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
 <p align="center">
     <img src="https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_bar.png" width="80%" />
 </p>
-
-## Performance
 
 ![](https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_compare.png)
 
