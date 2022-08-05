@@ -1,5 +1,5 @@
   
-# ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware [[arXiv]](https://arxiv.org/abs/1812.00332) [[Poster]](https://file.lzhu.me/projects/proxylessNAS/figures/ProxylessNAS_iclr_poster_final.pdf)
+# ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware [[arXiv]](https://arxiv.org/abs/1812.00332) [[Poster]](https://hanlab.mit.edu/files/proxylessNAS/figures/ProxylessNAS_iclr_poster_final.pdf)
 ```bash
 @inproceedings{
   cai2018proxylessnas,
@@ -27,13 +27,13 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
 ```
 
 
-![](https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_nas.png)
+![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_nas.png)
 
 <p align="center">
-    <img src="https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_bar.png" width="80%" />
+    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_bar.png" width="80%" />
 </p>
 
-![](https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_compare.png)
+![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_compare.png)
 
 <table>
 <tr>
@@ -41,7 +41,7 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
 </tr>
 <tr>
     <td>
-    <img src="https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="100%" />
+    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="100%" />
     </td>
 <td>
 
@@ -65,7 +65,7 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
 </td></tr> </table>
 
 <!-- <p align="center">
-    <img src="https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="50%" />
+    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="50%" />
     </br>
     <a> ProxylessNAS consistently outperforms MobileNetV2 under various latency settings. </a>
 </p> -->
@@ -74,10 +74,10 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
 
 People used to deploy one model to all platforms, but this is not good. To fully exploit the efficiency, we should specialize architectures for each platform.
 
-![](https://file.lzhu.me/projects/proxylessNAS/figures/specialization.jpg)
-![](https://file.lzhu.me/projects/proxylessNAS/figures/specialized_archs.png)
+![](https://hanlab.mit.edu/files/proxylessNAS/figures/specialization.jpg)
+![](https://hanlab.mit.edu/files/proxylessNAS/figures/specialized_archs.png)
 
-We provide a [visualization](https://file.lzhu.me/projects/proxylessNAS/visualization.mp4) of search process. Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
+We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualization.mp4) of search process. Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
  
 # How to use / evaluate 
 * Use

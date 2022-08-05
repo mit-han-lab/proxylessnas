@@ -1,4 +1,4 @@
-# ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware [[arXiv]](https://arxiv.org/abs/1812.00332) [[Poster]](https://file.lzhu.me/projects/proxylessNAS/figures/ProxylessNAS_iclr_poster_final.pdf)
+# ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware [[arXiv]](https://arxiv.org/abs/1812.00332) [[Poster]](https://hanlab.mit.edu/files/proxylessNAS/figures/ProxylessNAS_iclr_poster_final.pdf)
 ```bash
 @inproceedings{
   cai2018proxylessnas,
@@ -19,13 +19,13 @@
 
 Without any proxy, directly and efficiently search neural network architectures on your target **task** and **hardware**! 
 
-![](https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_nas.png)
+![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_nas.png)
 
 <p align="center">
-    <img src="https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_bar.png" width="80%" />
+    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_bar.png" width="80%" />
 </p>
 
-![](https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_compare.png)
+![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_compare.png)
 
 <table>
 <tr>
@@ -33,7 +33,7 @@ Without any proxy, directly and efficiently search neural network architectures 
 </tr>
 <tr>
     <td>
-    <img src="https://file.lzhu.me/projects/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="100%" />
+    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="100%" />
     </td>
 <td>
 
@@ -59,8 +59,8 @@ Without any proxy, directly and efficiently search neural network architectures 
 
 People used to deploy one model to all platforms, but this is not good. To fully exploit the efficiency, we should specialize architectures for each platform.
 
-![](https://file.lzhu.me/projects/proxylessNAS/figures/specialization.jpg)
-[![Watch the video](https://file.lzhu.me/projects/proxylessNAS/figures/specialized_archs.png)](https://file.lzhu.me/projects/proxylessNAS/visualization.mp4)
+![](https://hanlab.mit.edu/files/proxylessNAS/figures/specialization.jpg)
+[![Watch the video](https://hanlab.mit.edu/files/proxylessNAS/figures/specialized_archs.png)](https://hanlab.mit.edu/files/proxylessNAS/visualization.mp4)
 
 ## Requirements
 - Pytorch 1.0
