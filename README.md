@@ -110,6 +110,12 @@ We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualiza
 * [proxyless_nas_tensorflow](./proxyless_nas_tensorflow): pretrained models for tensorflow.
 * [proxyless_nas](./proxyless_nas): pretrained models for PyTorch.
 
+## Projects with ProxylessNAS:
+* [ProxylessGaze](./proxyless_gaze/): Real-time Gaze Estimation with ProxylessNAS
+<div align=center>
+<img src="proxyless_gaze/assets/rpi4_demo.gif" style="width:80%"></img>
+</div>
+
 ## Related work on automated model compression and acceleration:
 
 [Once for All: Train One Network and Specialize it for Efficient Deployment](https://arxiv.org/abs/1908.09791) (ICLR'20, [code](https://github.com/mit-han-lab/once-for-all))
@@ -121,4 +127,3 @@ We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualiza
 [HAQ: Hardware-Aware Automated Quantization](https://arxiv.org/pdf/1811.08886.pdf)  (CVPR’19, oral)
 	
 [Defenstive Quantization: When Efficiency Meets Robustness](https://openreview.net/pdf?id=ryetZ20ctX) (ICLR'19)
-

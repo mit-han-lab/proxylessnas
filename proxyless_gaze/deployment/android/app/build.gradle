@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "org.tensorflow.lite.examples.gaze_estimation"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    packagingOptions {
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libSNPE.so'
+        pickFirst 'lib/arm64-v8a/libsnpe_dsp_domains_v2.so'
+        pickFirst 'lib/arm64-v8a/libsnpe_dsp_v65_domains_v2_skel.so'
+        pickFirst 'lib/armeabi-v7a/libsnpe_dsp_v65_domains_v2_skel.so'
+        pickFirst 'lib/arm64-v8a/libsnpe_dsp_v66_domains_v2_skel.so'
+        pickFirst 'lib/armeabi-v7a/libsnpe_dsp_v66_domains_v2_skel.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libsnpe_dsp_domains_v2.so'
+        pickFirst 'lib/arm64-v8a/libSNPE.so'
+        pickFirst 'lib/armeabi-v7a/libsymphony-cpu.so'
+        pickFirst 'lib/arm64-v8a/libsymphony-cpu.so'
+        pickFirst 'lib/arm64-v8a/libSnpeHtpPrepare.so'
+        pickFirst 'lib/arm64-v8a/libSnpeHtpV68Skel.so'
+        pickFirst 'lib/arm64-v8a/libSnpeHtpV68Stub.so'
+        pickFirst 'lib/arm64-v8a/libSnpeHtpV69Skel.so'
+        pickFirst 'lib/arm64-v8a/libSnpeHtpV69Stub.so'
+        pickFirst 'lib/arm64-v8a/libhta.so'
+        pickFirst 'lib/armeabi-v7a/libSnpeHtpPrepare.so'
+        pickFirst 'lib/armeabi-v7a/libSnpeHtpV68Skel.so'
+        pickFirst 'lib/armeabi-v7a/libSnpeHtpV68Stub.so'
+        pickFirst 'lib/armeabi-v7a/libSnpeHtpV69Skel.so'
+        pickFirst 'lib/armeabi-v7a/libSnpeHtpV69Stub.so'
+        pickFirst 'lib/armeabi-v7a/libhta.so'
+    }
+    androidResources {
+        noCompress 'tflite'
+    }
+    namespace 'org.tensorflow.lite.examples.gaze_estimation'
+}
+
+// Download default models; if you wish to use your own models then
+// place them in the "assets" directory and comment out this line.
+//apply from:'download.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    // Build off of nightly TensorFlow Lite
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
+    implementation (name: 'platform-validator', ext: 'aar')
+    implementation (name: 'snpe-release', ext: 'aar')
+    implementation (name: 'psnpe-release', ext: 'aar')
+    implementation project(path: ':opencv')
+    // Use local TensorFlow library
+    // implementation 'org.tensorflow:tensorflow-lite-local:0.0.0'
+}

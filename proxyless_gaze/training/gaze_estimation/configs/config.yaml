@@ -1,0 +1,19 @@
+project: gaze_xgaze
+run_name: gaze_xgaze
+
+ckpt_dir: ./ckpts_xgaze
+dataset_dir: /data/junyanli/datasets/xgaze_dataset_colored
+
+batch_size: 128
+num_workers: 8
+epoch: 200
+criterion: MSELoss
+
+optimizer: Adam
+optimizer_parameters:
+  lr: 0.001
+
+model: MyModelv7
+arch: proxyless-w0.3-r176_imagenet
+logger: wandb
+

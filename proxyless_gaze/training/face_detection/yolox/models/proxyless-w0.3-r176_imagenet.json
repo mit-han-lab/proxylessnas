@@ -1,0 +1,487 @@
+{
+    "name": "ProxylessNASNets",
+    "bn": {
+        "momentum": 0.1,
+        "eps": 0.001,
+        "ws_eps": null
+    },
+    "first_conv": {
+        "name": "ConvLayer",
+        "kernel_size": 3,
+        "stride": 2,
+        "dilation": 1,
+        "groups": 1,
+        "bias": false,
+        "has_shuffle": false,
+        "in_channels": 3,
+        "out_channels": 16,
+        "use_bn": true,
+        "act_func": "relu6",
+        "dropout_rate": 0,
+        "ops_order": "weight_bn_act"
+    },
+    "blocks": [
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 16,
+                "out_channels": 8,
+                "kernel_size": 3,
+                "stride": 1,
+                "expand_ratio": 1,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": null
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 8,
+                "out_channels": 16,
+                "kernel_size": 5,
+                "stride": 2,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": null
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "kernel_size": 3,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "ZeroLayer",
+                "stride": 1
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "ZeroLayer",
+                "stride": 1
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "kernel_size": 7,
+                "stride": 2,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": null
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "kernel_size": 3,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 16,
+                "out_channels": 16,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 16,
+                "out_channels": 24,
+                "kernel_size": 7,
+                "stride": 2,
+                "expand_ratio": 6,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": null
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 24,
+                "out_channels": 24,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 24,
+                "out_channels": 24,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 24,
+                "out_channels": 24,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 24,
+                "out_channels": 24,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 24,
+                "out_channels": 24,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 24,
+                "out_channels": 24,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 24,
+                "out_channels": 32,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 6,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": null
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 32,
+                "out_channels": 32,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 32,
+                "out_channels": 32,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 32,
+                "out_channels": 32,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 32,
+                "out_channels": 32,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 32,
+                "out_channels": 32,
+                "kernel_size": 5,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 32,
+                "out_channels": 32,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 32,
+                "out_channels": 64,
+                "kernel_size": 7,
+                "stride": 2,
+                "expand_ratio": 6,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": null
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 64,
+                "out_channels": 64,
+                "kernel_size": 7,
+                "stride": 1,
+                "expand_ratio": 6,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 64,
+                "out_channels": 64,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 64,
+                "out_channels": 64,
+                "kernel_size": 7,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 64,
+                "out_channels": 64,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 64,
+                "out_channels": 64,
+                "kernel_size": 7,
+                "stride": 1,
+                "expand_ratio": 3,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": {
+                "name": "IdentityLayer",
+                "in_channels": 64,
+                "out_channels": 64,
+                "use_bn": false,
+                "act_func": null,
+                "dropout_rate": 0,
+                "ops_order": "weight_bn_act"
+            }
+        },
+        {
+            "name": "MobileInvertedResidualBlock",
+            "mobile_inverted_conv": {
+                "name": "MBInvertedConvLayer",
+                "in_channels": 64,
+                "out_channels": 96,
+                "kernel_size": 7,
+                "stride": 1,
+                "expand_ratio": 6,
+                "mid_channels": null,
+                "act_func": "relu6",
+                "use_se": false
+            },
+            "shortcut": null
+        }
+    ],
+    "feature_mix_layer": {
+        "name": "ConvLayer",
+        "kernel_size": 1,
+        "stride": 1,
+        "dilation": 1,
+        "groups": 1,
+        "bias": false,
+        "has_shuffle": false,
+        "in_channels": 96,
+        "out_channels": 384,
+        "use_bn": true,
+        "act_func": "relu6",
+        "dropout_rate": 0,
+        "ops_order": "weight_bn_act"
+    },
+    "classifier": {
+        "name": "LinearLayer",
+        "in_features": 384,
+        "out_features": 1000,
+        "bias": true,
+        "use_bn": false,
+        "act_func": null,
+        "dropout_rate": 0,
+        "ops_order": "weight_bn_act"
+    },
+    "resolution": 176
+}

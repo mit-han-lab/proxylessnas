@@ -1,0 +1,6 @@
+Please use the following information when submitting customer support requests:
+
+Package ID: ippicv_2020_lnx_ia32_20191018_general
+Package Contents: Intel(R) Integrated Performance Primitives for OpenCV 2020 Gold
+
+Please direct customer support requests through http://www.intel.com/software/products/support
