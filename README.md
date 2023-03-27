@@ -113,7 +113,7 @@ We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualiza
 ## Projects with ProxylessNAS:
 * [ProxylessGaze](./proxyless_gaze/): Real-time Gaze Estimation with ProxylessNAS
 <div align=center>
-<img src="proxyless_gaze/assets/rpi4_demo.gif" style="width:80%"></img>
+<img src="proxyless_gaze/assets/rpi4_demo.gif" style="width:100%"></img>
 </div>
 
 ## Related work on automated model compression and acceleration:
