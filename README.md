@@ -69,7 +69,7 @@ People used to deploy one model to all platforms, but this is not good. To fully
 ![](assets/specialization.jpg)
 ![](assets/specialized_archs.png)
 
-We provide a [visualization](https://github.com/han-cai/files/tree/master/proxylessnas/visualization.mp4) of search process. Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
+We provide a [visualization](assets/visualization.mp4) of search process. Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
  
 # How to use / evaluate 
 * Use
