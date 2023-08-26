@@ -1,5 +1,5 @@
   
-# ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware [[arXiv]](https://arxiv.org/abs/1812.00332) [[Poster]](https://hanlab.mit.edu/files/proxylessNAS/figures/ProxylessNAS_iclr_poster_final.pdf)
+# ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware [[arXiv]](https://arxiv.org/abs/1812.00332) [[Poster]](assets/ProxylessNAS_iclr_poster_final.pdf)
 ```bash
 @inproceedings{
   cai2018proxylessnas,
@@ -27,13 +27,13 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
 ```
 
 
-![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_nas.png)
+![](assets/proxyless_nas.png)
 
 <p align="center">
-    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_bar.png" width="80%" />
+    <img src="assets/proxyless_bar.png" width="80%" />
 </p>
 
-![](https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_compare.png)
+![](assets/proxyless_compare.png)
 
 <table>
 <tr>
@@ -41,7 +41,7 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
 </tr>
 <tr>
     <td>
-    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="100%" />
+    <img src="assets/proxyless_vs_mobilenet.png" width="100%" />
     </td>
 <td>
 
@@ -60,24 +60,16 @@ model = torch.hub.load('mit-han-lab/ProxylessNAS', target_platform, pretrained=T
     <th> ProxylessNAS(GPU) is 3.1% better than MobilenetV2 with 20% faster. </th>
 </tr> 
 
-
-
 </td></tr> </table>
-
-<!-- <p align="center">
-    <img src="https://hanlab.mit.edu/files/proxylessNAS/figures/proxyless_vs_mobilenet.png" width="50%" />
-    </br>
-    <a> ProxylessNAS consistently outperforms MobileNetV2 under various latency settings. </a>
-</p> -->
 
 ## Specialization
 
 People used to deploy one model to all platforms, but this is not good. To fully exploit the efficiency, we should specialize architectures for each platform.
 
-![](https://hanlab.mit.edu/files/proxylessNAS/figures/specialization.jpg)
-![](https://hanlab.mit.edu/files/proxylessNAS/figures/specialized_archs.png)
+![](assets/specialization.jpg)
+![](assets/specialized_archs.png)
 
-We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualization.mp4) of search process. Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
+We provide a [visualization](assets/visualization.mp4) of search process. Please refer to our [paper](https://arxiv.org/abs/1812.00332) for more results.
  
 # How to use / evaluate 
 * Use
@@ -113,7 +105,7 @@ We provide a [visualization](https://hanlab.mit.edu/files/proxylessNAS/visualiza
 ## Projects with ProxylessNAS:
 * [ProxylessGaze](./proxyless_gaze/): Real-time Gaze Estimation with ProxylessNAS
 <div align=center>
-<img src="proxyless_gaze/assets/rpi4_demo.gif" style="width:80%"></img>
+<img src="proxyless_gaze/assets/rpi4_demo.gif" style="width:100%"></img>
 </div>
 
 ## Related work on automated model compression and acceleration:
